@@ -6,3 +6,8 @@
   cursor: pointer;
   background-color: #FFFFFF;
 }
+
+.element__button-like:hover {
+  opacity: 0.5;
+  transition: 1s linear;
+}

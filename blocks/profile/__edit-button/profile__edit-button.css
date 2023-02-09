@@ -4,5 +4,10 @@
   background-color: #000;
   border: 1px solid #FFFFFF;
   cursor: pointer;
-  margin-top: 15px;
+  margin-top: 14px;
+}
+
+.profile__edit-button:hover {
+  opacity: 0.6;
+  transition: 1s linear;
 }

@@ -8,3 +8,8 @@
   color: #FFFFFF;
   cursor: pointer;
 }
+
+.profile__add-button:hover {
+  opacity: 0.6;
+  transition: 1s linear;
+}
