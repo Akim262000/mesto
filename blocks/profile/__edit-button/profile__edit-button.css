@@ -5,9 +5,19 @@
   border: 1px solid #FFFFFF;
   cursor: pointer;
   margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .profile__edit-button:hover {
   opacity: 0.6;
   transition: 1s linear;
+}
+
+@media (max-width: 790px) {
+  .profile__edit-button {
+    width: 14px;
+    height: 14px;
+  }
 }

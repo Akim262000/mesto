@@ -6,3 +6,9 @@
   grid-template-columns: 1fr 24px;
   align-self: center;
 }
+
+@media (max-width: 540px) {
+  .profile__info {
+    margin: 23px auto 36px;
+  }
+}

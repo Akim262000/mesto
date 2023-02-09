@@ -5,3 +5,16 @@
   line-height: 22px;
   margin-top: 8px;
 }
+
+@media (max-width: 540px) {
+  .profile__description {
+    text-align: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .profile__description {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
