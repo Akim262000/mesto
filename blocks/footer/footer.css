@@ -10,5 +10,13 @@
 @media (max-width: 953px) {
   .footer {
     margin-left: 27px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+@media (max-width: 320px) {
+  .footer {
+    margin-left: 19px;
   }
 }

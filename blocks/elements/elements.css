@@ -25,6 +25,8 @@
 @media (max-width: 490px) {
   .elements {
     max-width: 282px;
-    
+    margin-top: 36px;
+    margin-bottom: 49px;
+    row-gap: 19px;
   }
 }
