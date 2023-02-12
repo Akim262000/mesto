@@ -10,10 +10,6 @@
   background-position: center;
   top: -40px;
   right: -40px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .popup__close:hover {
