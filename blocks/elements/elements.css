@@ -16,7 +16,7 @@
 
 @media (max-width: 630px) and (min-width: 491px) {
   .elements {
-    max-width: 445px;
+    max-width: 434px;
     grid-template-columns: 210px 210px;
     column-gap: 14px;
   }
