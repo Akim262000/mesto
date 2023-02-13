@@ -15,7 +15,7 @@ let profileDescription = document.querySelector('.profile__description');
 // Вносим данные в форму
 function addValue() {
   nameInput.value = profileName.textContent;
-  descriptionInput.value = profileDescription.textContent;
+  jobInput.value = profileDescription.textContent;
 }
 // Открываем popup
 function openPopup() {
