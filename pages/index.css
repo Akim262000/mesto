@@ -1,6 +1,6 @@
-@import url(../vendor/normalize.css); 
-@import url(../vendor/fonts/fonts.css); 
-@import url(../blocks/page/page.css); 
+@import url(../vendor/normalize.css);
+@import url(../vendor/fonts/fonts.css);
+@import url(../blocks/page/page.css);
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/profile/profile.css);
@@ -26,4 +26,3 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__submit-button/popup__submit-button.css);
 @import url(../blocks/popup/__input/popup__input.css);
-* { outline: 1px solid rgb(245, 0, 0); }
