@@ -20,7 +20,7 @@
 @media (max-width: 600px) {
   .popup__close {
     width: 20px;
-    height: 20px; 
+    height: 20px;
     background-image: url(../../../image/close-mobile.svg);
     right: 0;
     top: -30px;
