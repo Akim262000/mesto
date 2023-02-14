@@ -4,7 +4,8 @@
   border: none;
   cursor: pointer;
   position: absolute;
-  background-image: url(../../../image/close.svg);
+  background-image: url(../../../images/close.svg);
+  background-size: 32px;
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
@@ -21,7 +22,7 @@
   .popup__close {
     width: 20px;
     height: 20px;
-    background-image: url(../../../image/close-mobile.svg);
+    background-image: url(../../../images/close-mobile.svg);
     right: 0;
     top: -30px;
   }
