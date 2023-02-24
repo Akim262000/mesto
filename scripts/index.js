@@ -25,6 +25,7 @@ const cards = [
   }
 ]
 
+let elementLikeButton;
 const elements = document.querySelector('.elements');
 // Создаем элемент
 function createElement(element) {
@@ -33,6 +34,13 @@ function createElement(element) {
   elementTitle.textContent = element.title;
   const elementImage = newElement.querySelector('.element__image');
   elementImage.setAttribute('src', element.image);
+  // Находим кнопку лайка
+  elementLikeButton = newElement.querySelector('.element__button-like');
+  // Добавляем активное состояние лайку
+  elementLikeButton.addEventListener('click',(evt) => {
+    evt.target.classList.toggle('element__button-like_active');
+  });
+  // Находим кнопку удаления
   const deleteButton = newElement.querySelector('.element__button-delete');
   deleteButton.addEventListener('click', deleteButtonClick);
   elements.prepend(newElement);
@@ -75,13 +83,25 @@ const addNewElementButton = popupNewCard.querySelector('.popup__submit-button');
 
 const addElementForm = popupNewCard.querySelector('.popup__form');
 
-openAddButton.addEventListener('click',() => {
-  popupNewCard.classList.add('popup_opened');
-})
+// openAddButton.addEventListener('click',() => {
+//   popupNewCard.classList.add('popup_opened');
+// })
 
-closeAddButton.addEventListener('click',() => {
+// closeAddButton.addEventListener('click',() => {
+//   popupNewCard.classList.remove('popup_opened');
+// })
+
+openAddButton.addEventListener('click', openPopupNewCard);
+
+closeAddButton.addEventListener('click',closePopupNewCard);
+
+function openPopupNewCard() {
+  popupNewCard.classList.add('popup_opened');
+}
+// Закрываем popup
+function closePopupNewCard() {
   popupNewCard.classList.remove('popup_opened');
-})
+}
 // // Находим поля формы в DOM
 // let titleInput = form.querySelector('#title');
 // let linkInput = form.querySelector('#image');
@@ -100,6 +120,7 @@ function handleFormSubmit(event) {
       title, image
   }
   createElement(element);
+  closePopupNewCard();
 }
 
 // Вносим данные в форму
