@@ -27,6 +27,16 @@ const cards = [
 
 let elementLikeButton;
 const elements = document.querySelector('.elements');
+
+const viewImagePopup = document.querySelector('.popup_type_image');
+
+
+const viewImagePopupCloseBtn = viewImagePopup.querySelector('.popup__close');
+
+const togglePopup = (somePopup) => {
+  somePopup.classList.toggle('popup_opened');
+};
+
 // Создаем элемент
 function createElement(element) {
   const newElement = document.querySelector('#elementTemplate').content.cloneNode(true);
@@ -40,6 +50,27 @@ function createElement(element) {
   elementLikeButton.addEventListener('click',(evt) => {
     evt.target.classList.toggle('element__button-like_active');
   });
+  // находим изображение попапа просмотра
+  const viewImagePopupImg = viewImagePopup.querySelector('.popup__image');
+  // находим название изображения попапа просмотра
+  const viewImagePopupName = viewImagePopup.querySelector('.popup__caption');
+
+
+  //функция открытия попапа просмотра изображений
+  const openViewImagePopup = () => {
+    togglePopup(viewImagePopup);
+
+    viewImagePopupImg.src = elementImage.src;
+    viewImagePopupName.textContent = elementTitle.textContent;
+
+    // листенер закрытия попапа просмотра изображения
+    viewImagePopupCloseBtn.onclick = () => togglePopup(viewImagePopup);
+  };
+
+  // листенер открытия попапа просмотра изображения
+  elementImage.addEventListener('click', openViewImagePopup);
+
+
   // Находим кнопку удаления
   const deleteButton = newElement.querySelector('.element__button-delete');
   deleteButton.addEventListener('click', deleteButtonClick);
@@ -119,7 +150,10 @@ function handleFormSubmit(event) {
   const element = {
       title, image
   }
+  event.target.reset(); 
+
   createElement(element);
+
   closePopupNewCard();
 }
 
