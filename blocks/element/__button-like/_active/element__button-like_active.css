@@ -1,8 +1,11 @@
 .element__button-like_active {
   background-image: url(../../../../images/black-like.svg);
   transition: 0.1s linear;
+<<<<<<< HEAD
 }
 
 .element__button-like_active:hover {
     opacity: 1;
+=======
+>>>>>>> b449052f8d0c9b684fb081ded64c49c53e0d4e34
 }

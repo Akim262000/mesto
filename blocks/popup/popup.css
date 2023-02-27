@@ -1,5 +1,9 @@
 .popup {
   background-color: rgba(0, 0, 0, 0.5);
+<<<<<<< HEAD
+=======
+  /* display: none; */
+>>>>>>> b449052f8d0c9b684fb081ded64c49c53e0d4e34
   display: flex;
   font-family: "Inter", Arial, sans-serif;
   justify-content: center;

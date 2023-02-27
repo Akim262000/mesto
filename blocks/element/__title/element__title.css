@@ -9,9 +9,12 @@
   white-space: nowrap;
   overflow: hidden;
 }
+<<<<<<< HEAD
 
 @media (max-width: 650px) {
   .element__title {
     max-width: 147px;
   }
 }
+=======
+>>>>>>> b449052f8d0c9b684fb081ded64c49c53e0d4e34
