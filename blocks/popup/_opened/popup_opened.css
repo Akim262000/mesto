@@ -1,8 +1,4 @@
 .popup_opened {
-<<<<<<< HEAD
-=======
-  /* display: flex; */
->>>>>>> b449052f8d0c9b684fb081ded64c49c53e0d4e34
   opacity: 1;
   visibility: visible;
 }
