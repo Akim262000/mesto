@@ -9,3 +9,9 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+@media (max-width: 650px) {
+  .element__title {
+    max-width: 147px;
+  }
+}

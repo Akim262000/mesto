@@ -4,7 +4,6 @@
 
 [Ссылка на готовый проект](https://akim262000.github.io/mesto/ "Я проект!")  
 
- 
 
 *Базовый JavaScript и работа с браузером* от [Яндекс.Практикум](https://practicum.yandex.ru/).   
 
