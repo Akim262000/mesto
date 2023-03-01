@@ -56,8 +56,6 @@ const imagePopupCloseButton = imagePopup.querySelector(".popup__close");
 const imagePopupImg = imagePopup.querySelector(".popup__image");
 // находим название изображения попапа просмотра
 const imagePopupName = imagePopup.querySelector(".popup__figcaption");
-// находим все крестики проекта по универсальному селектору
-const closeButtons = document.querySelectorAll(".popup__close");
 // Открыть popup
 const openPopup = (popup) => {
   popup.classList.add("popup_opened");
@@ -88,12 +86,13 @@ function createCard(titleValue, imageValue) {
     imagePopupImg.alt = elementImage.alt;
     imagePopupName.textContent = elementTitle.textContent;
   };
-  // листенер открытия попапа просмотра изображения
+  // Обработчик открытия попапа просмотра изображения
   elementImage.addEventListener("click", openImagePopup);
   // возвращаем готовую карточку
   return cardElement;
 }
 function createElement(title, image) {
+  // const newElement = createCard(title, image)
   elements.prepend(createCard(title, image));
 }
 const renderInitialCards = (arr) => {
@@ -145,15 +144,21 @@ profileEditButton.addEventListener("click", () => {
   openPopup(popupProfile);
   fillProfileInputs();
 });
-// Обработчик открытия попапа для создания элемента
+// Обработчик закрытия попапа редактирования профиля
+profileCloseButton.addEventListener("click", () => {
+  closePopup(popupProfile);
+});
+// Обработчик открытия попапа создания элемента
 openAddButton.addEventListener("click", () => {
   openPopup(popupNewElement);
 });
-closeButtons.forEach((button) => {
-  // находим 1 раз ближайший к крестику попап
-  const popup = button.closest(".popup");
-  // устанавливаем обработчик закрытия на крестик
-  button.addEventListener("click", () => closePopup(popup));
+// Обработчик закрытия попапа создания элемента
+elementCloseButton.addEventListener("click", () => {
+  closePopup(popupNewElement);
+});
+// Обработчик закрытия попапа просмотра изображения
+imagePopupCloseButton.addEventListener("click", () => {
+  closePopup(imagePopup);
 });
 // автоматическая загрузка карточек на страницу
 renderInitialCards(initialCards);
