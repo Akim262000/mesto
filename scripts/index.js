@@ -47,7 +47,7 @@ const elementCloseButton = popupNewElement.querySelector(".popup__close");
 // Находим обработчик отправки формы
 const addNewElementButton = popupNewElement.querySelector(".popup__submit-button");
 const elements = document.querySelector(".elements");
-const elementTemplate = document.querySelector('#elementTemplate').content;
+const elementTemplate = document.querySelector("#elementTemplate").content;
 // Находим popup_type_image
 const imagePopup = document.querySelector(".popup_type_image");
 // Находим кнопку закрытия popup_type_image
@@ -59,13 +59,13 @@ const imagePopupName = imagePopup.querySelector(".popup__figcaption");
 // Открыть popup
 const openPopup = (popup) => {
   popup.classList.add("popup_opened");
-}
-// Закрыть popup 
+};
+// Закрыть popup
 const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
-}
+};
 function createCard(titleValue, imageValue) {
-  const cardElement = elementTemplate.querySelector('.element').cloneNode(true);
+  const cardElement = elementTemplate.querySelector(".element").cloneNode(true);
   const elementImage = cardElement.querySelector(".element__image");
   const elementTitle = cardElement.querySelector(".element__title");
   const elementLikeButton = cardElement.querySelector(".element__button-like");
@@ -73,27 +73,23 @@ function createCard(titleValue, imageValue) {
   elementTitle.textContent = titleValue;
   elementImage.src = imageValue;
   elementImage.alt = titleValue;
-// Обработчик кнопки лайк
+  // Обработчик кнопки лайк
   elementLikeButton.addEventListener("click", (evt) => {
     evt.target.classList.toggle("element__button-like_active");
   });
-// Обработчик кнопки Delete
-deleteButton.addEventListener("click", deleteButtonClick);
-//функция открытия попапа просмотра изображений
-const openimagePopup = () => {
-  openPopup(imagePopup);
-  imagePopupImg.src = elementImage.src;
-  imagePopupImg.alt = elementImage.alt;
-  imagePopupName.textContent = elementTitle.textContent;
-};
-// листенер открытия попапа просмотра изображения
-elementImage.addEventListener("click", openimagePopup);
-// листенер закрытия попапа просмотра изображения
-imagePopupCloseButton.addEventListener("click",() => {
-    closePopup(imagePopup)
-});
+  // Обработчик кнопки Delete
+  deleteButton.addEventListener("click", deleteButtonClick);
+  //функция открытия попапа просмотра изображений
+  const openImagePopup = () => {
+    openPopup(imagePopup);
+    imagePopupImg.src = elementImage.src;
+    imagePopupImg.alt = elementImage.alt;
+    imagePopupName.textContent = elementTitle.textContent;
+  };
+  // Обработчик открытия попапа просмотра изображения
+  elementImage.addEventListener("click", openImagePopup);
   // возвращаем готовую карточку
-return cardElement
+  return cardElement;
 }
 function createElement(title, image) {
   // const newElement = createCard(title, image)
@@ -101,7 +97,7 @@ function createElement(title, image) {
 }
 const renderInitialCards = (arr) => {
   arr.map((el) => {
-  return createElement(el.title, el.image);
+    return createElement(el.title, el.image);
   });
 };
 // Удвляем елемент
@@ -143,18 +139,26 @@ profileForm.addEventListener("submit", handlerProfileFormSubmit);
 // Прикрепляем обработчик к форме
 popupNewElement.addEventListener("submit", handlerElementFormSubmit);
 // Обработчики событий
+// Обработчик открытия попапа редактирования профиля
 profileEditButton.addEventListener("click", () => {
   openPopup(popupProfile);
   fillProfileInputs();
-})
-profileCloseButton.addEventListener('click', () => {
+});
+// Обработчик закрытия попапа редактирования профиля
+profileCloseButton.addEventListener("click", () => {
   closePopup(popupProfile);
-})
-openAddButton.addEventListener('click', () => {
+});
+// Обработчик открытия попапа создания элемента
+openAddButton.addEventListener("click", () => {
   openPopup(popupNewElement);
-})
-elementCloseButton.addEventListener('click', () => {
+});
+// Обработчик закрытия попапа создания элемента
+elementCloseButton.addEventListener("click", () => {
   closePopup(popupNewElement);
-})
+});
+// Обработчик закрытия попапа просмотра изображения
+imagePopupCloseButton.addEventListener("click", () => {
+  closePopup(imagePopup);
+});
 // автоматическая загрузка карточек на страницу
 renderInitialCards(initialCards);
