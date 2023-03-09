@@ -118,10 +118,6 @@ function handlerElementFormSubmit(event) {
   const form = event.target;
   const title = form.querySelector("#title").value;
   const image = form.querySelector("#image").value;
-  const element = {
-    title,
-    image,
-  };
   // Очищаем поля ввода
   form.reset();
   // Создаем новый элемент
