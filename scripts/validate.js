@@ -1,10 +1,11 @@
-function showInputError(errorTextElement, validationMessage) {
+function showInputError(errorTextElement, validationMessage, activeErrorClass) {
   errorTextElement.textContent = validationMessage;
   errorTextElement.classList.add(activeErrorClass);
 }
 
 function hideInputError(errorTextElement, activeErrorClass) {
   errorTextElement.classList.remove(activeErrorClass);
+  errorTextElement.textContent = "";
 }
 
 function checkInputValidity(input, errorClass, activeErrorClass) {
@@ -41,7 +42,7 @@ enableValidation({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   errorClass: '.popup__input-error_type_',
-  activeErrorClass: 'popup__input-error',
+  activeErrorClass: 'popup__input-error_active',
   // submitButtonSelector: '.popup__button',
   // inactiveButtonClass: 'popup__button_disabled',
   // inputErrorClass: 'popup__input_type_error',
