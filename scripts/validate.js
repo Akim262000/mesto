@@ -1,8 +1,9 @@
+// функция, которая добавляет класс с ошибкой
 function showInputError(errorTextElement, validationMessage, activeErrorClass) {
   errorTextElement.textContent = validationMessage;
   errorTextElement.classList.add(activeErrorClass);
 }
-
+// функция, которая удаляет класс с ошибкой
 function hideInputError(errorTextElement, activeErrorClass) {
   errorTextElement.classList.remove(activeErrorClass);
   errorTextElement.textContent = "";
@@ -17,7 +18,7 @@ function enableButton(submitButton, validSubmitButtonClass) {
   submitButton.classList.add(validSubmitButtonClass);
   submitButton.disabled = false;
 }
-
+// функция, которая возвращает или убирает текст ошибки в зависимости от валидности поля ввода
 function checkInputValidity(input, errorClass, activeErrorClass) {
   const errorTextElement = document.querySelector(`${errorClass}${input.name}`);
   if(!input.validity.valid){
@@ -26,11 +27,11 @@ function checkInputValidity(input, errorClass, activeErrorClass) {
     hideInputError(errorTextElement);
   }
 }
-
+// функция, которая проверяет валидность поля ввода
 function hasInvaalidInput(inputList) {
   return Array.from(inputList).some((input) => !input.validity.valid);
 }
-
+// функция, которая отключает и включает кнопку
 function toggleButtonState(submitButton, validSubmitButtonClass, inputList) {
   if(!hasInvaalidInput(inputList)) {
     enableButton(submitButton, validSubmitButtonClass);
@@ -39,7 +40,7 @@ function toggleButtonState(submitButton, validSubmitButtonClass, inputList) {
   }
 }
 
-
+// функция, которая принимает элемент формы и добавляет ее полям нужные обработчики
 function setEventListeners(form, inputList, errorClass, activeErrorClass, validSubmitButtonClass, submitButton) {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -52,7 +53,7 @@ function setEventListeners(form, inputList, errorClass, activeErrorClass, validS
     });
   });
 }
-
+// функция, которая находит все формы на странице и обрабатывает их
 function enableValidation(config) {
   const form = document.querySelector(config.formSelector);
   const inputList = form.querySelectorAll(config.inputSelector);
@@ -67,7 +68,7 @@ enableValidation({
   errorClass: '.popup__input-error_type_',
   activeErrorClass: 'popup__input-error_active',
   submitButtonSelector: '.popup__submit-button',
-  validSubmitButtonClass: 'popup__submit-button_valid'
+  validSubmitButtonClass: 'popup__submit-button_valid',
   // submitButtonSelector: '.popup__button',
   // inactiveButtonClass: 'popup__button_disabled',
   // inputErrorClass: 'popup__input_type_error',
