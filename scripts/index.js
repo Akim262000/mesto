@@ -59,11 +59,29 @@ const imagePopupName = imagePopup.querySelector(".popup__figcaption");
 // Открыть popup
 const openPopup = (popup) => {
   popup.classList.add("popup_opened");
+  document.addEventListener('keyup', handleEscape);
 };
 // Закрыть popup
 const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
+  document.addEventListener('keyup', handleEscape);
 };
+// Функция закрытия popup кликом на Esc
+const handleEscape = (evt) => {
+  evt.preventDefault();
+  if(evt.key === 'Escape') {
+    const popupActive = document.querySelector('.popup_opened');
+    closePopup(popupActive);
+  }
+}
+// Функция закрытия popup кликом на Overlay
+const closeByOverlayClick = (evt) => {
+  const popupActive = document.querySelector('.popup_opened');
+  if (evt.target.classList.contains('popup')) {
+    closePopup(popupActive);
+  }
+};
+
 function createCard(titleValue, imageValue) {
   const cardElement = elementTemplate.querySelector(".element").cloneNode(true);
   const elementImage = cardElement.querySelector(".element__image");
@@ -160,5 +178,12 @@ elementCloseButton.addEventListener("click", () => {
 imagePopupCloseButton.addEventListener("click", () => {
   closePopup(imagePopup);
 });
+// Обработчик закрытия попапа редактирования профиля кликом на overlay
+popupProfile.addEventListener('mousedown', closeByOverlayClick);
+// Обработчик закрытия попапа создания элемента кликом на overlay
+popupNewElement.addEventListener('mousedown', closeByOverlayClick);
+// Обработчик закрытия попапа просмотра изображения кликом на overlay
+imagePopup.addEventListener('mousedown', closeByOverlayClick);
+
 // автоматическая загрузка карточек на страницу
 renderInitialCards(initialCards);
