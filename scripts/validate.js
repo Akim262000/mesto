@@ -55,11 +55,12 @@ function setEventListeners(form, inputList, errorClass, activeErrorClass, validS
 }
 // функция, которая находит все формы на странице и обрабатывает их
 function enableValidation(config) {
-  const form = document.querySelector(config.formSelector);
-  const inputList = form.querySelectorAll(config.inputSelector);
-  const submitButton = form.querySelector(config.submitButtonSelector);
-
-  setEventListeners(form, inputList, config.errorClass, config.activeErrorClass, config.validSubmitButtonClass, submitButton);
+  const formList = document.querySelectorAll(config.formSelector);
+  formList.forEach((form) => {
+    const inputList = form.querySelectorAll(config.inputSelector);
+    const submitButton = form.querySelector(config.submitButtonSelector);
+    setEventListeners(form, inputList, config.errorClass, config.activeErrorClass, config.validSubmitButtonClass, submitButton);
+  })
 }
 
 enableValidation({

@@ -136,6 +136,7 @@ function handlerElementFormSubmit(event) {
   form.reset();
   // Создаем новый элемент
   createElement(title, image);
+    // находим кнопку submit и деактивируем ее после создания карточки
   // Закрываем popup
   closePopup(popupNewElement);
 }
