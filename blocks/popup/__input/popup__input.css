@@ -1,8 +1,8 @@
 .popup__input {
   max-width: 358px;
   width: 100%;
-  min-height: 27px;
-  margin: 0 0 30px;
+  min-height: 28px;
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
   border: 0;
@@ -11,10 +11,6 @@
   font-size: 14px;
   line-height: 17px;
   color: #000;
-}
-
-.popup__input:nth-child(2) {
-  margin-bottom: 0;
 }
 
 .popup__input:focus {
