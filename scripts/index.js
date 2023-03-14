@@ -45,7 +45,7 @@ const openAddButton = document.querySelector(".profile__add-button");
 // Находим кнопку закрытия popup
 const elementCloseButton = popupNewElement.querySelector(".popup__close");
 // Находим обработчик отправки формы
-const addNewElementButton = popupNewElement.querySelector(".popup__submit-button");
+// const addNewElementButton = popupNewElement.querySelector(".popup__submit-button");
 const elements = document.querySelector(".elements");
 const elementTemplate = document.querySelector("#elementTemplate").content;
 // Находим popup_type_image
@@ -170,6 +170,8 @@ profileCloseButton.addEventListener("click", () => {
 // Обработчик открытия попапа создания элемента
 openAddButton.addEventListener("click", () => {
   openPopup(popupNewElement);
+  const buttonElement = popupNewElement.querySelector('.popup__submit-button');
+  buttonElement.setAttribute('disabled', 'disabled');
 });
 // Обработчик закрытия попапа создания элемента
 elementCloseButton.addEventListener("click", () => {
