@@ -1,10 +1,20 @@
 // функция, которая добавляет класс с ошибкой
-function showInputError(errorTextElement, validationMessage, activeErrorClass) {
+function showInputError(input, errorSelector, errorTextElement, validationMessage, activeErrorClass) {
+
+  
+  input.classList.add(errorSelector);
+
+
   errorTextElement.textContent = validationMessage;
   errorTextElement.classList.add(activeErrorClass);
 }
 // функция, которая удаляет класс с ошибкой
-function hideInputError(errorTextElement, activeErrorClass) {
+function hideInputError(input, errorSelector, errorTextElement, activeErrorClass) {
+
+
+  input.classList.remove(errorSelector);
+
+
   errorTextElement.classList.remove(activeErrorClass);
   errorTextElement.textContent = "";
 }
@@ -19,12 +29,12 @@ function enableButton(submitButton, validSubmitButtonClass) {
   submitButton.disabled = false;
 }
 // функция, которая возвращает или убирает текст ошибки в зависимости от валидности поля ввода
-function checkInputValidity(input, errorClass, activeErrorClass) {
-  const errorTextElement = document.querySelector(`${errorClass}${input.name}`);
+function checkInputValidity(input, errorSelector, errorClass, activeErrorClass) {
+  const errorTextElement = document.querySelector(`${errorClass}${input.id}`);
   if(!input.validity.valid){
-    showInputError(errorTextElement, input.validationMessage, activeErrorClass);
+    showInputError(input, errorSelector, errorTextElement, input.validationMessage, activeErrorClass);
   } else {
-    hideInputError(errorTextElement);
+    hideInputError(input, errorSelector, errorTextElement);
   }
 }
 // функция, которая проверяет валидность поля ввода
@@ -41,14 +51,14 @@ function toggleButtonState(submitButton, validSubmitButtonClass, inputList) {
 }
 
 // функция, которая принимает элемент формы и добавляет ее полям нужные обработчики
-function setEventListeners(form, inputList, errorClass, activeErrorClass, validSubmitButtonClass, submitButton) {
+function setEventListeners(form, inputList, errorSelector, errorClass, activeErrorClass, validSubmitButtonClass, submitButton) {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
   });
 
   inputList.forEach((input) => {
     input.addEventListener("input", (e) => {
-      checkInputValidity(input, errorClass, activeErrorClass);
+      checkInputValidity(input, errorSelector, errorClass, activeErrorClass);
       toggleButtonState(submitButton, validSubmitButtonClass, inputList);
     });
   });
@@ -59,7 +69,7 @@ function enableValidation(config) {
   formList.forEach((form) => {
     const inputList = form.querySelectorAll(config.inputSelector);
     const submitButton = form.querySelector(config.submitButtonSelector);
-    setEventListeners(form, inputList, config.errorClass, config.activeErrorClass, config.validSubmitButtonClass, submitButton);
+    setEventListeners(form, inputList, config.errorSelector, config.errorClass, config.activeErrorClass, config.validSubmitButtonClass, submitButton);
   })
 }
 
@@ -67,7 +77,8 @@ enableValidation({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   errorClass: '.popup__input-error_type_',
-  activeErrorClass: 'popup__input-error_active',
+  errorSelector: 'popup__input-error_type_red',
+  // activeErrorClass: 'popup__input-error',
   submitButtonSelector: '.popup__submit-button',
   validSubmitButtonClass: 'popup__submit-button_valid',
 });
