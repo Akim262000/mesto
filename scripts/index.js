@@ -1,61 +1,3 @@
-const initialCards = [
-  {
-    image: "./images/Saint-Petersburg.jpg",
-    title: "Санкт-Петербург",
-  },
-  {
-    image: "./images/Rostov-on-Don.jpg",
-    title: "Ростов-на-Дону",
-  },
-  {
-    image: "./images/Elbrus.jpg",
-    title: "Гора Эльбрус",
-  },
-  {
-    image: "./images/Pervomayskiy.jpg",
-    title: "п. Первомайский",
-  },
-  {
-    image: "./images/Taganrog.jpg",
-    title: "Таганрог",
-  },
-  {
-    image: "./images/Kushevskaya.jpg",
-    title: "ст. Кущевская",
-  },
-];
-// Находим popup
-const popupProfile = document.querySelector(".popup_type_profile");
-// Находим кнопку открытия popup
-const profileEditButton = document.querySelector(".profile__edit-button");
-// Находим кнопку закрытия popup
-const profileCloseButton = popupProfile.querySelector(".popup__close");
-// Находим форму в DOM
-const profileForm = popupProfile.querySelector(".popup__form");
-// Находим поля формы в DOM
-const nameInput = profileForm.querySelector("#name");
-const jobInput = profileForm.querySelector("#description");
-// Находим поля профиля
-const profileName = document.querySelector(".profile__name");
-const profileDescription = document.querySelector(".profile__description");
-// Находим popup_type_element
-const popupNewElement = document.querySelector(".popup_type_element");
-// Находим кнопку открытия popup
-const openAddButton = document.querySelector(".profile__add-button");
-// Находим кнопку закрытия popup
-const elementCloseButton = popupNewElement.querySelector(".popup__close");
-// Находим обработчик отправки формы
-// const addNewElementButton = popupNewElement.querySelector(".popup__submit-button");
-const elements = document.querySelector(".elements");
-const elementTemplate = document.querySelector("#elementTemplate").content;
-// Находим popup_type_image
-const imagePopup = document.querySelector(".popup_type_image");
-// Находим кнопку закрытия popup_type_image
-const imagePopupCloseButton = imagePopup.querySelector(".popup__close");
-// находим изображение попапа просмотра
-const imagePopupImg = imagePopup.querySelector(".popup__image");
-// находим название изображения попапа просмотра
-const imagePopupName = imagePopup.querySelector(".popup__figcaption");
 // Открыть popup
 const openPopup = (popup) => {
   popup.classList.add("popup_opened");
@@ -64,7 +6,7 @@ const openPopup = (popup) => {
 // Закрыть popup
 const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
-  document.addEventListener('keyup', handleEscape);
+  document.removeEventListener('keyup', handleEscape);
 };
 // Функция закрытия popup кликом на Esc
 const handleEscape = (evt) => {
@@ -81,7 +23,6 @@ const closeByOverlayClick = (evt) => {
     closePopup(popupActive);
   }
 };
-
 function createCard(titleValue, imageValue) {
   const cardElement = elementTemplate.querySelector(".element").cloneNode(true);
   const elementImage = cardElement.querySelector(".element__image");
@@ -127,11 +68,11 @@ function deleteButtonClick(event) {
   element.remove();
 }
 // Обработчик отправки формы
-function handlerElementFormSubmit(event) {
+function handlerCardFormSubmit(event) {
   event.preventDefault();
   const form = event.target;
-  const title = form.querySelector("#title").value;
-  const image = form.querySelector("#image").value;
+  const title = titleInput.value;
+  const image = imageInput.value
   // Очищаем поля ввода
   form.reset();
   // Создаем новый элемент
@@ -156,7 +97,7 @@ function handlerProfileFormSubmit(evt) {
 // Прикрепляем обработчик к форме
 profileForm.addEventListener("submit", handlerProfileFormSubmit);
 // Прикрепляем обработчик к форме
-popupNewElement.addEventListener("submit", handlerElementFormSubmit);
+popupNewElement.addEventListener("submit", handlerCardFormSubmit);
 // Обработчики событий
 // Обработчик открытия попапа редактирования профиля
 profileEditButton.addEventListener("click", () => {
@@ -169,9 +110,8 @@ profileCloseButton.addEventListener("click", () => {
 });
 // Обработчик открытия попапа создания элемента
 openAddButton.addEventListener("click", () => {
-  openPopup(popupNewElement);
-  const buttonElement = popupNewElement.querySelector('.popup__submit-button');
   buttonElement.setAttribute('disabled', 'disabled');
+  openPopup(popupNewElement);
 });
 // Обработчик закрытия попапа создания элемента
 elementCloseButton.addEventListener("click", () => {
