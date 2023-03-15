@@ -1,20 +1,13 @@
 // функция, которая добавляет класс с ошибкой
 function showInputError(input, errorSelector, errorTextElement, validationMessage, activeErrorClass) {
-
-  
   input.classList.add(errorSelector);
-
-
   errorTextElement.textContent = validationMessage;
   errorTextElement.classList.add(activeErrorClass);
 }
+
 // функция, которая удаляет класс с ошибкой
 function hideInputError(input, errorSelector, errorTextElement, activeErrorClass) {
-
-
   input.classList.remove(errorSelector);
-
-
   errorTextElement.classList.remove(activeErrorClass);
   errorTextElement.textContent = "";
 }
@@ -31,19 +24,22 @@ function enableButton(submitButton, validSubmitButtonClass) {
 // функция, которая возвращает или убирает текст ошибки в зависимости от валидности поля ввода
 function checkInputValidity(input, errorSelector, errorClass, activeErrorClass) {
   const errorTextElement = document.querySelector(`${errorClass}${input.id}`);
-  if(!input.validity.valid){
+
+  if (!input.validity.valid) {
     showInputError(input, errorSelector, errorTextElement, input.validationMessage, activeErrorClass);
   } else {
     hideInputError(input, errorSelector, errorTextElement);
   }
 }
+
 // функция, которая проверяет валидность поля ввода
 function hasInvaalidInput(inputList) {
   return Array.from(inputList).some((input) => !input.validity.valid);
 }
+
 // функция, которая отключает и включает кнопку
 function toggleButtonState(submitButton, validSubmitButtonClass, inputList) {
-  if(!hasInvaalidInput(inputList)) {
+  if (!hasInvaalidInput(inputList)) {
     enableButton(submitButton, validSubmitButtonClass);
   } else {
     disableButton(submitButton, validSubmitButtonClass);
@@ -63,22 +59,23 @@ function setEventListeners(form, inputList, errorSelector, errorClass, activeErr
     });
   });
 }
+
 // функция, которая находит все формы на странице и обрабатывает их
 function enableValidation(config) {
   const formList = document.querySelectorAll(config.formSelector);
   formList.forEach((form) => {
     const inputList = form.querySelectorAll(config.inputSelector);
     const submitButton = form.querySelector(config.submitButtonSelector);
+
     setEventListeners(form, inputList, config.errorSelector, config.errorClass, config.activeErrorClass, config.validSubmitButtonClass, submitButton);
-  })
+  });
 }
 
 enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  errorClass: '.popup__input-error_type_',
-  errorSelector: 'popup__input-error_type_red',
-  // activeErrorClass: 'popup__input-error',
-  submitButtonSelector: '.popup__submit-button',
-  validSubmitButtonClass: 'popup__submit-button_valid',
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  errorClass: ".popup__input-error_type_",
+  errorSelector: "popup__input-error_type",
+  submitButtonSelector: ".popup__submit-button",
+  validSubmitButtonClass: "popup__submit-button_valid",
 });

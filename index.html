@@ -2,7 +2,7 @@
 <html lang="ru">
   <head>
     <link rel="stylesheet" href="pages/index.css">
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
@@ -44,13 +44,11 @@
         <button type="button" aria-label="Закрыть" class="popup__close"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
         <form class="popup__form" name="form" novalidate>
-          <fieldset class="popup__set">
             <input class="popup__input popup__input_type_name" type="text" id="name" name="name" minlength="2" maxlength="40" placeholder="Имя" required>
             <span class="popup__input-error popup__input-error_type_name"></span>
             <input class="popup__input popup__input_type_description" type="text" id="description" name="description" minlength="2" maxlength="200" placeholder="Описание" required>
             <span class="popup__input-error popup__input-error_type_description"></span>
             <button type="submit" class="popup__submit-button">Сохранить</button>
-          </fieldset>
         </form>
       </div>
     </div>
@@ -59,13 +57,11 @@
         <button type="button" aria-label="Закрыть" class="popup__close"></button>
         <h3 class="popup__title">Новое место</h3>
         <form class="popup__form" name="form" novalidate>
-          <fieldset class="popup__set">
             <input class="popup__input popup__input_type_title" type="text" id="title" name="title" minlength="2" maxlength="30" placeholder="Название" required>
             <span class="popup__input-error popup__input-error_type_title"></span>
             <input class="popup__input popup__input_type_image" type="url" id="image" name="image" placeholder="Ссылка на картинку" required>
             <span class="popup__input-error popup__input-error_type_image"></span>
             <button type="submit" name="button" class="popup__submit-button">Создать</button>
-          </fieldset>
         </form>
       </div>
     </div>
