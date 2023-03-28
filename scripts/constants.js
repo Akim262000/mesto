@@ -63,3 +63,8 @@ const imagePopupCloseButton = imagePopup.querySelector(".popup__close");
 const imagePopupImg = imagePopup.querySelector(".popup__image");
 // находим название изображения попапа просмотра
 const imagePopupName = imagePopup.querySelector(".popup__figcaption");
+
+export {initialCards, popupProfile, profileEditButton, profileCloseButton, profileForm, nameInput, jobInput, 
+  profileName, profileDescription, popupNewElement, elementForm, titleInput, imageInput, openAddButton, elementCloseButton, 
+  elements, elementTemplate, buttonElement, imagePopup, imagePopupCloseButton, imagePopupImg, imagePopupName
+};
