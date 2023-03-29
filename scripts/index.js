@@ -3,7 +3,7 @@ import {initialCards, popupProfile, profileEditButton, profileCloseButton, profi
    imageInput, openAddButton, elementCloseButton, elements, buttonElement, imagePopup, 
    imagePopupCloseButton, imagePopupImg, imagePopupName} from './constants.js';
 import { Card } from './Card.js';
-
+import { FormValidator } from './FormValidator.js';
 // Открыть popup
 const openPopup = (popup) => {
   popup.classList.add("popup_opened");
@@ -106,6 +106,7 @@ function handlerCardFormSubmit(event) {
     // находим кнопку submit и деактивируем ее после создания карточки
   // Закрываем popup
   closePopup(popupNewElement);
+  formAddNewCardValidator.toggleButtonState();
 }
 // Вносим данные в форму
 function fillProfileInputs() {
@@ -120,10 +121,14 @@ function handlerProfileFormSubmit(evt) {
   // Закрываем popup
   closePopup(popupProfile);
 }
-// Прикрепляем обработчик к форме
-profileForm.addEventListener("submit", handlerProfileFormSubmit);
-// Прикрепляем обработчик к форме
-popupNewElement.addEventListener("submit", handlerCardFormSubmit);
+
+
+// // Прикрепляем обработчик к форме
+// profileForm.addEventListener("submit", handlerProfileFormSubmit);
+// // Прикрепляем обработчик к форме
+// popupNewElement.addEventListener("submit", handlerCardFormSubmit);
+
+
 // Обработчики событий
 // Обработчик открытия попапа редактирования профиля
 profileEditButton.addEventListener("click", () => {
@@ -160,3 +165,9 @@ imagePopup.addEventListener('mousedown', closeByOverlayClick);
 
 // автоматическая загрузка карточек на страницу
 renderInitialCards(initialCards);
+
+const formEditProfileValidator = new FormValidator(config, profileForm);
+formEditProfileValidator.enableValidation();
+
+const formAddNewCardValidator = new FormValidator(config, popupNewElement);
+formAddNewCardValidator.enableValidation();
