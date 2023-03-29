@@ -52,7 +52,7 @@ const elementCloseButton = popupNewElement.querySelector(".popup__close");
 // Находим обработчик отправки формы
 // const addNewElementButton = popupNewElement.querySelector(".popup__submit-button");
 const elements = document.querySelector(".elements");
-const elementTemplate = document.querySelector("#elementTemplate").content;
+// const elementTemplate = document.querySelector("#elementTemplate").content;
 // Находим кнопку сохранения popup
 const buttonElement = popupNewElement.querySelector('.popup__submit-button');
 // Находим popup_type_image
@@ -64,7 +64,8 @@ const imagePopupImg = imagePopup.querySelector(".popup__image");
 // находим название изображения попапа просмотра
 const imagePopupName = imagePopup.querySelector(".popup__figcaption");
 
-export {initialCards, popupProfile, profileEditButton, profileCloseButton, profileForm, nameInput, jobInput, 
-  profileName, profileDescription, popupNewElement, elementForm, titleInput, imageInput, openAddButton, elementCloseButton, 
-  elements, elementTemplate, buttonElement, imagePopup, imagePopupCloseButton, imagePopupImg, imagePopupName
-};
+
+export {initialCards, popupProfile, profileEditButton, profileCloseButton, profileForm,
+   nameInput, jobInput, profileName, profileDescription, popupNewElement, elementForm, titleInput,
+    imageInput, openAddButton, elementCloseButton, elements, buttonElement, imagePopup, 
+    imagePopupCloseButton, imagePopupImg, imagePopupName};

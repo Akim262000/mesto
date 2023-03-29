@@ -1,8 +1,9 @@
-import {initialCards, popupProfile, profileEditButton, profileCloseButton, profileForm, nameInput, jobInput, 
-  profileName, profileDescription, popupNewElement, elementForm, titleInput, imageInput, openAddButton, elementCloseButton, 
-  elements, elementTemplate, buttonElement, imagePopup, imagePopupCloseButton, imagePopupImg, imagePopupName} from './constants.js';
+import {initialCards, popupProfile, profileEditButton, profileCloseButton, profileForm,
+  nameInput, jobInput, profileName, profileDescription, popupNewElement, elementForm, titleInput,
+   imageInput, openAddButton, elementCloseButton, elements, buttonElement, imagePopup, 
+   imagePopupCloseButton, imagePopupImg, imagePopupName} from './constants.js';
 import { Card } from './Card.js';
-import { FormValidator } from "./FormValidator.js";
+
 // Открыть popup
 const openPopup = (popup) => {
   popup.classList.add("popup_opened");
@@ -28,6 +29,8 @@ const closeByOverlayClick = (evt) => {
     closePopup(popupActive);
   }
 };
+
+
 // function createCard(titleValue, imageValue) {
 //   const cardElement = elementTemplate.querySelector(".element").cloneNode(true);
 //   const elementImage = cardElement.querySelector(".element__image");
@@ -55,43 +58,41 @@ const closeByOverlayClick = (evt) => {
 //   // возвращаем готовую карточку
 //   return cardElement;
 // }
-function addCard(title, image) {
-  // const newElement = createCard(title, image)
-  const card = new Card(title, image, '.elements', openPopup, closePopup).generateCard();
-  elements.prepend(card);
-}
-const renderInitialCards = (arr) => {
-  arr.forEach((item) => {
-    addCard(item.title, item.image);
-  })
-};
 
-// const addCard = (title, image) => {
-//   const card = new Card(title, image, '.', openPopup, closePopup).generateCard();
-//   elements.prepend(card);
-// };
 
-// const renderInitialCards = (array) => {
+// function createElement(title, image) {
+//   // const newElement = createCard(title, image)
+//   elements.prepend(createCard(title, image));
+// }
+// const renderInitialCards = (arr) => {
 //   arr.map((el) => {
 //     return createElement(el.title, el.image);
 //   });
+// };
+
+
+const createCard = (title, image) => {
+  const card = new Card(title, image,'.element-template', openPopup, closePopup).generateCard();
+  elements.prepend(card);
+}
+
+const renderInitialCards = (arr) => {
+  arr.forEach((item) => {
+    createCard(item.title, item.image);
+  })
+};
+
+
+// // Удвляем елемент
+// function deleteButtonClick(event) {
+//   // Находим элемент
+//   const button = event.target;
+//   const element = button.closest(".element");
+//   // Удаляем элемент
+//   element.remove();
 // }
 
 
-
-
-
-
-
-
-// Удвляем елемент
-function deleteButtonClick(event) {
-  // Находим элемент
-  const button = event.target;
-  const element = button.closest(".element");
-  // Удаляем элемент
-  element.remove();
-}
 // Обработчик отправки формы
 function handlerCardFormSubmit(event) {
   event.preventDefault();
@@ -101,11 +102,10 @@ function handlerCardFormSubmit(event) {
   // Очищаем поля ввода
   form.reset();
   // Создаем новый элемент
-  addCard(title, image);
+  createElement(title, image);
     // находим кнопку submit и деактивируем ее после создания карточки
   // Закрываем popup
   closePopup(popupNewElement);
-  formAddNewCardValidator.toggleButtonState();
 }
 // Вносим данные в форму
 function fillProfileInputs() {
@@ -120,7 +120,6 @@ function handlerProfileFormSubmit(evt) {
   // Закрываем popup
   closePopup(popupProfile);
 }
-
 // Прикрепляем обработчик к форме
 profileForm.addEventListener("submit", handlerProfileFormSubmit);
 // Прикрепляем обработчик к форме
@@ -144,10 +143,14 @@ openAddButton.addEventListener("click", () => {
 elementCloseButton.addEventListener("click", () => {
   closePopup(popupNewElement);
 });
-// Обработчик закрытия попапа просмотра изображения
-imagePopupCloseButton.addEventListener("click", () => {
-  closePopup(imagePopup);
-});
+
+
+// // Обработчик закрытия попапа просмотра изображения
+// imagePopupCloseButton.addEventListener("click", () => {
+//   closePopup(imagePopup);
+// });
+
+
 // Обработчик закрытия попапа редактирования профиля кликом на overlay
 popupProfile.addEventListener('mousedown', closeByOverlayClick);
 // Обработчик закрытия попапа создания элемента кликом на overlay
@@ -157,9 +160,3 @@ imagePopup.addEventListener('mousedown', closeByOverlayClick);
 
 // автоматическая загрузка карточек на страницу
 renderInitialCards(initialCards);
-
-const formEditProfileValidator = new FormValidator(config, formEditProfile);
-formEditProfileValidator.enableValidation();
-
-const formAddNewCardValidator = new FormValidator(config, formEditProfile);
-formAddNewCardValidator.enableValidation();
