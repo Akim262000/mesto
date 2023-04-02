@@ -64,8 +64,17 @@ const imagePopupImg = imagePopup.querySelector(".popup__image");
 // находим название изображения попапа просмотра
 const imagePopupName = imagePopup.querySelector(".popup__figcaption");
 
+const config = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  errorClass: ".popup__input-error_type_",
+  errorSelector: "popup__input-error_type",
+  submitButtonSelector: ".popup__submit-button",
+  validSubmitButtonClass: "popup__submit-button_valid",
+};
+
 
 export {initialCards, popupProfile, profileEditButton, profileCloseButton, profileForm,
    nameInput, jobInput, profileName, profileDescription, popupNewElement, elementForm, titleInput,
     imageInput, openAddButton, elementCloseButton, elements, buttonElement, imagePopup, 
-    imagePopupCloseButton, imagePopupImg, imagePopupName};
+    imagePopupCloseButton, imagePopupImg, imagePopupName, config};

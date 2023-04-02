@@ -1,7 +1,7 @@
 import {initialCards, popupProfile, profileEditButton, profileCloseButton, profileForm,
   nameInput, jobInput, profileName, profileDescription, popupNewElement, elementForm, titleInput,
    imageInput, openAddButton, elementCloseButton, elements, buttonElement, imagePopup, 
-   imagePopupCloseButton, imagePopupImg, imagePopupName} from './constants.js';
+   imagePopupCloseButton, imagePopupImg, imagePopupName, config} from './constants.js';
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 // Открыть popup
@@ -102,11 +102,11 @@ function handlerCardFormSubmit(event) {
   // Очищаем поля ввода
   form.reset();
   // Создаем новый элемент
-  createElement(title, image);
+  createCard(title, image);
     // находим кнопку submit и деактивируем ее после создания карточки
   // Закрываем popup
   closePopup(popupNewElement);
-  formAddNewCardValidator.toggleButtonState();
+  // formAddNewCardValidator.toggleButtonState();
 }
 // Вносим данные в форму
 function fillProfileInputs() {
@@ -119,14 +119,14 @@ function handlerProfileFormSubmit(evt) {
   profileName.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
   // Закрываем popup
-  closePopup(popupProfile);
+  closePopup(popupProfile); 
 }
 
 
-// // Прикрепляем обработчик к форме
-// profileForm.addEventListener("submit", handlerProfileFormSubmit);
-// // Прикрепляем обработчик к форме
-// popupNewElement.addEventListener("submit", handlerCardFormSubmit);
+// Прикрепляем обработчик к форме
+profileForm.addEventListener("submit", handlerProfileFormSubmit);
+// Прикрепляем обработчик к форме
+popupNewElement.addEventListener("submit", handlerCardFormSubmit);
 
 
 // Обработчики событий
@@ -166,8 +166,10 @@ imagePopup.addEventListener('mousedown', closeByOverlayClick);
 // автоматическая загрузка карточек на страницу
 renderInitialCards(initialCards);
 
+// валидация формы редактирования профиля
 const formEditProfileValidator = new FormValidator(config, profileForm);
 formEditProfileValidator.enableValidation();
 
+// валидация формы добавления новой карточки
 const formAddNewCardValidator = new FormValidator(config, popupNewElement);
 formAddNewCardValidator.enableValidation();
