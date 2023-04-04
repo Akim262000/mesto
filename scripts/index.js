@@ -106,7 +106,7 @@ function handlerCardFormSubmit(event) {
     // находим кнопку submit и деактивируем ее после создания карточки
   // Закрываем popup
   closePopup(popupNewElement);
-  // formAddNewCardValidator.toggleButtonState();
+  CardFormValidator.toggleButtonState();
 }
 // Вносим данные в форму
 function fillProfileInputs() {
@@ -147,6 +147,7 @@ openAddButton.addEventListener("click", () => {
 // Обработчик закрытия попапа создания элемента
 elementCloseButton.addEventListener("click", () => {
   closePopup(popupNewElement);
+  // evt.target.reset();
 });
 
 
@@ -167,9 +168,9 @@ imagePopup.addEventListener('mousedown', closeByOverlayClick);
 renderInitialCards(initialCards);
 
 // валидация формы редактирования профиля
-const formEditProfileValidator = new FormValidator(config, profileForm);
-formEditProfileValidator.enableValidation();
+const profileFormValidator = new FormValidator(config, profileForm);
+profileFormValidator.enableValidation();
 
 // валидация формы добавления новой карточки
-const formAddNewCardValidator = new FormValidator(config, popupNewElement);
-formAddNewCardValidator.enableValidation();
+const CardFormValidator = new FormValidator(config, popupNewElement);
+CardFormValidator.enableValidation();

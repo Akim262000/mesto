@@ -1,12 +1,13 @@
 export class FormValidator {
-  constructor(config) {
+  constructor(config, formElement) {
     this._config = config;
+    this._formElement = formElement;
     this._formList = document.querySelectorAll(this._config.formSelector);
-    this._formList.forEach((form) => {
-    this._inputList = form.querySelectorAll(this._config.inputSelector);
-    this._submitButton = form.querySelector(this._config.submitButtonSelector);
+    this._formList.forEach(() => {
+    this._inputList = this._formElement.querySelectorAll(this._config.inputSelector);
+    this._submitButton = this._formElement.querySelector(this._config.submitButtonSelector);
 
-    this._setEventListeners(form);
+    this._setEventListeners(this._formElement);
   });
   }
 
@@ -60,8 +61,8 @@ export class FormValidator {
 }
 
 // функция, которая принимает элемент формы и добавляет ее полям нужные обработчики
-  _setEventListeners(form, activeErrorClass) {
-  form.addEventListener("submit", (e) => {
+  _setEventListeners(activeErrorClass) {
+    this._formElement.addEventListener("submit", (e) => {
     e.preventDefault();
   });
 
@@ -72,5 +73,7 @@ export class FormValidator {
     });
   });
 }
-
+enableValidation(activeErrorClass) {
+  this._setEventListeners(this._formElement, activeErrorClass);
+};
 }
