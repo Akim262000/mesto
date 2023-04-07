@@ -1,13 +1,13 @@
-import {imagePopupImg, imagePopupName, imagePopup, imagePopupCloseButton} from './constants.js';
+import {imagePopupImg, imagePopupName, imagePopup} from './constants.js';
 
 export class Card {
-  constructor(title, image, cardSelector, openPopup, closePopup) {
-    this._container = document.querySelector(cardSelector);
+  constructor(title, image, cardSelector, openPopup, closePopup, elementLikeButton) {
     this._title = title;
     this._image = image;
     this._cardSelector = cardSelector;
     this._openPopup = openPopup;
     this._closePopup = closePopup;
+    this._elementLikeButton = elementLikeButton;
   }
 
   _getTemplate() {
@@ -22,8 +22,8 @@ export class Card {
 
   // Метод слушателя кнопки Like
   _handleLikeCard() {
-    const elementLikeButton = this._element.querySelector('.element__button-like');
-    elementLikeButton.classList.toggle('element__button-like_active');
+    this._elementLikeButton = this._element.querySelector('.element__button-like');
+    this._elementLikeButton.classList.toggle('element__button-like_active');
   }
 
   // Метод слушателя кнопки Delete
@@ -42,6 +42,9 @@ export class Card {
 
   // Метод слушателя закрытия попапа просмотра изображения
   _handleCloseImagePopup() {
+    imagePopupImg.src = '';
+    imagePopupImg.alt = '';
+    imagePopupName.textContent = '';
     this._closePopup(imagePopup);
   }
 
@@ -49,11 +52,8 @@ export class Card {
   _setEventListeners() {
   // Обработчик открытия попапа просмотра изображения
   this._element.querySelector('.element__image').addEventListener('click', () => {
-    this._handleOpenImagePopup();
-  })
-  // Обработчик открытия попапа просмотра изображения
-  imagePopupCloseButton.addEventListener('click', () => {
-    this._handleCloseImagePopup();
+   this._handleOpenImagePopup();
+
   })
   // Слушатель кнопки удаления карточки
   this._element.querySelector('.element__button-delete').addEventListener('click', () => {
