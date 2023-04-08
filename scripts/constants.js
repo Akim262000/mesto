@@ -73,7 +73,6 @@ const config = {
   validSubmitButtonClass: "popup__submit-button_valid",
 };
 
-
 export {initialCards, popupProfile, profileEditButton, profileCloseButton, profileForm,
    nameInput, jobInput, profileName, profileDescription, popupNewElement, elementForm, titleInput,
     imageInput, openAddButton, elementCloseButton, elements, buttonElement, imagePopup, 

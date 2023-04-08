@@ -30,68 +30,16 @@ const closeByOverlayClick = (evt) => {
   }
 };
 
-
-// function createCard(titleValue, imageValue) {
-//   const cardElement = elementTemplate.querySelector(".element").cloneNode(true);
-//   const elementImage = cardElement.querySelector(".element__image");
-//   const elementTitle = cardElement.querySelector(".element__title");
-//   const elementLikeButton = cardElement.querySelector(".element__button-like");
-//   const deleteButton = cardElement.querySelector(".element__button-delete");
-//   elementTitle.textContent = titleValue;
-//   elementImage.src = imageValue;
-//   elementImage.alt = titleValue;
-//   // Обработчик кнопки лайк
-//   elementLikeButton.addEventListener("click", (evt) => {
-//     evt.target.classList.toggle("element__button-like_active");
-//   });
-//   // Обработчик кнопки Delete
-//   deleteButton.addEventListener("click", deleteButtonClick);
-//   //функция открытия попапа просмотра изображений
-//   const openImagePopup = () => {
-//     openPopup(imagePopup);
-//     imagePopupImg.src = elementImage.src;
-//     imagePopupImg.alt = elementImage.alt;
-//     imagePopupName.textContent = elementTitle.textContent;
-//   };
-//   // Обработчик открытия попапа просмотра изображения
-//   elementImage.addEventListener("click", openImagePopup);
-//   // возвращаем готовую карточку
-//   return cardElement;
-// }
-
-
-// function createElement(title, image) {
-//   // const newElement = createCard(title, image)
-//   elements.prepend(createCard(title, image));
-// }
-// const renderInitialCards = (arr) => {
-//   arr.map((el) => {
-//     return createElement(el.title, el.image);
-//   });
-// };
-
-
 const createCard = (title, image) => {
-  const card = new Card(title, image,'.element-template', openPopup, closePopup).generateCard();
-  elements.prepend(card);
+  return new Card(title, image,'.element-template', openPopup, closePopup).generateCard();
 }
 
 const renderInitialCards = (arr) => {
   arr.forEach((item) => {
-    createCard(item.title, item.image);
+    const card = createCard(item.title, item.image);
+    elements.prepend(card);
   })
 };
-
-
-// // Удвляем елемент
-// function deleteButtonClick(event) {
-//   // Находим элемент
-//   const button = event.target;
-//   const element = button.closest(".element");
-//   // Удаляем элемент
-//   element.remove();
-// }
-
 
 // Обработчик отправки формы
 function handlerCardFormSubmit(event) {
@@ -102,7 +50,8 @@ function handlerCardFormSubmit(event) {
   // Очищаем поля ввода
   form.reset();
   // Создаем новый элемент
-  createCard(title, image);
+  const card = createCard(title, image);
+  elements.prepend(card);
     // находим кнопку submit и деактивируем ее после создания карточки
   // Закрываем popup
   closePopup(popupNewElement);
@@ -140,22 +89,18 @@ profileCloseButton.addEventListener("click", () => {
 });
 // Обработчик открытия попапа создания элемента
 openAddButton.addEventListener("click", () => {
-  // buttonElement.setAttribute('disabled', 'disabled');
   cardFormValidator.toggleButtonState();
   openPopup(popupNewElement);
 });
 // Обработчик закрытия попапа создания элемента
 elementCloseButton.addEventListener("click", () => {
   closePopup(popupNewElement);
-  // evt.target.reset();
 });
-
 
 // Обработчик закрытия попапа просмотра изображения
 imagePopupCloseButton.addEventListener("click", () => {
   closePopup(imagePopup);
 });
-
 
 // Обработчик закрытия попапа редактирования профиля кликом на overlay
 popupProfile.addEventListener('mousedown', closeByOverlayClick);

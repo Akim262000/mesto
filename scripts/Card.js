@@ -1,13 +1,12 @@
 import {imagePopupImg, imagePopupName, imagePopup} from './constants.js';
 
 export class Card {
-  constructor(title, image, cardSelector, openPopup, closePopup, elementLikeButton) {
+  constructor(title, image, cardSelector, openPopup, closePopup) {
     this._title = title;
     this._image = image;
     this._cardSelector = cardSelector;
     this._openPopup = openPopup;
     this._closePopup = closePopup;
-    this._elementLikeButton = elementLikeButton;
   }
 
   _getTemplate() {
@@ -22,7 +21,6 @@ export class Card {
 
   // Метод слушателя кнопки Like
   _handleLikeCard() {
-    this._elementLikeButton = this._element.querySelector('.element__button-like');
     this._elementLikeButton.classList.toggle('element__button-like_active');
   }
 
@@ -40,15 +38,6 @@ export class Card {
     imagePopupName.textContent = this._title;
   }
 
-  // Метод слушателя закрытия попапа просмотра изображения
-  _handleCloseImagePopup() {
-    imagePopupImg.src = '';
-    imagePopupImg.alt = '';
-    imagePopupName.textContent = '';
-    this._closePopup(imagePopup);
-  }
-
-
   _setEventListeners() {
   // Обработчик открытия попапа просмотра изображения
   this._element.querySelector('.element__image').addEventListener('click', () => {
@@ -59,7 +48,7 @@ export class Card {
   this._element.querySelector('.element__button-delete').addEventListener('click', () => {
     this._handleDeleteCard();
   })
-  this._element.querySelector('.element__button-like').addEventListener('click', () => {
+  this._elementLikeButton.addEventListener('click', () => {
     this._handleLikeCard();
   })
   }
@@ -67,12 +56,12 @@ export class Card {
   // Метод создания карточки
   generateCard() {
     this._element = this._getTemplate();
-    this._setEventListeners();
-  
-    this._element.querySelector('.element__image').src = this._image;
-    this._element.querySelector('.element__image').alt = this._title;
+    this._elementLikeButton = this._element.querySelector('.element__button-like');
+    this._elementImage = this._element.querySelector('.element__image');
+    this._elementImage.src = this._image;
+    this._elementImage.alt = this._title;
     this._element.querySelector('.element__title').textContent = this._title; 
-
+    this._setEventListeners();
     return this._element;
   }
 }
