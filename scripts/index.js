@@ -45,9 +45,9 @@ import UserInfo from '../components/UserInfo.js';
 //   })
 // };
 
-function fillInEditProfileFormInputs({name, job}) {
+function fillInEditProfileFormInputs({name, description}) {
   nameInput.value = name;
-  jobInput.value = job;
+  jobInput.value = description;
 };
 
 
@@ -66,7 +66,7 @@ const createCard = (data) => {
 // создание экземпляра класса, отвечающего за отображение информации о пользователе
 const profileInfo = new UserInfo({
   name: '.profile__name',
-  job: '.profile__discription'
+  description: '.profile__discription'
 });
 
 
@@ -75,7 +75,7 @@ const editProfilePopup = new PopupWithForm({
   handleFormSubmit: (dataForm) => {
     profileInfo.setUserInfo({
       name: dataForm.name,
-      job: dataForm.job
+      description: dataForm.description
     });
     editProfilePopup.close();
   }
@@ -86,7 +86,7 @@ profileEditButton.addEventListener('click', () => {
   const info = profileInfo.getUserInfo();
   fillInEditProfileFormInputs({
     name: info.name,
-    job: info.job
+    description: info.description
   });
   editProfilePopup.open();
 });
