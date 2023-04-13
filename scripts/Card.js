@@ -1,12 +1,11 @@
-import {imagePopupImg, imagePopupName, imagePopup} from './constants.js';
+// import {imagePopupImg, imagePopupName, imagePopup} from './constants.js';
 
-export class Card {
-  constructor(title, image, cardSelector, openPopup, closePopup) {
-    this._title = title;
-    this._image = image;
+export default class Card {
+  constructor({data, handleOpenImagePopup}, cardSelector) {
+    this._title = data.title;
+    this._image = data.image;
     this._cardSelector = cardSelector;
-    this._openPopup = openPopup;
-    this._closePopup = closePopup;
+    this._handleOpenImagePopup = handleOpenImagePopup;
   }
 
   _getTemplate() {
@@ -30,18 +29,18 @@ export class Card {
     this._element = null;
   }
 
-  // Метод слушателя открытия попапа просмотра изображения
-  _handleOpenImagePopup() {
-    this._openPopup(imagePopup);
-    imagePopupImg.src = this._image;
-    imagePopupImg.alt = this._title;
-    imagePopupName.textContent = this._title;
-  }
+  // // Метод слушателя открытия попапа просмотра изображения
+  // _handleOpenImagePopup() {
+  //   this._openPopup(imagePopup);
+  //   imagePopupImg.src = this._image;
+  //   imagePopupImg.alt = this._title;
+  //   imagePopupName.textContent = this._title;
+  // }
 
   _setEventListeners() {
   // Обработчик открытия попапа просмотра изображения
-  this._element.querySelector('.element__image').addEventListener('click', () => {
-   this._handleOpenImagePopup();
+  this._elementImage.addEventListener('click', () => {
+   this._handleOpenImagePopup(this._title, this._image);
 
   })
   // Слушатель кнопки удаления карточки
