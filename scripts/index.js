@@ -106,7 +106,7 @@ addCardPopup.setEventListeners();
 
 openAddButton.addEventListener('click', () => {
   cardFormValidator.toggleButtonState();
-  addCardPopup.close();
+  addCardPopup.open();
 })
 
 
