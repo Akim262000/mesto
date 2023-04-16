@@ -1,7 +1,7 @@
 import {initialCards, profileEditButton, profileForm,
-  nameInput, jobInput, popupNewElement, openAddButton, config} from './constants.js';
-import Card from './Card.js';
-import { FormValidator } from './FormValidator.js';
+  nameInput, jobInput, popupNewElement, openAddButton, config} from '../utils/constants.js';
+import Card from '../components/Card.js';
+import { FormValidator } from '../components/FormValidator.js';
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from '../components/PopupWithImage.js';
 import Section from "../components/Section.js";
