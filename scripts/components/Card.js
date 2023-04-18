@@ -1,5 +1,3 @@
-// import {imagePopupImg, imagePopupName, imagePopup} from './constants.js';
-
 export default class Card {
   constructor({data, handleOpenImagePopup}, cardSelector) {
     this._title = data.title;
@@ -28,15 +26,7 @@ export default class Card {
     this._element.remove();
     this._element = null;
   }
-
-  // // Метод слушателя открытия попапа просмотра изображения
-  // _handleOpenImagePopup() {
-  //   this._openPopup(imagePopup);
-  //   imagePopupImg.src = this._image;
-  //   imagePopupImg.alt = this._title;
-  //   imagePopupName.textContent = this._title;
-  // }
-
+  
   _setEventListeners() {
   // Обработчик открытия попапа просмотра изображения
   this._elementImage.addEventListener('click', () => {
