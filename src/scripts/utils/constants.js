@@ -1,26 +1,34 @@
+import SaintPetersburg from "../../images/Saint-Petersburg.jpg";
+import RostovOnDon from "../../images/Rostov-on-Don.jpg";
+import Elbrus from "../../images/Elbrus.jpg";
+import Pervomayskiy from "../../images/Pervomayskiy.jpg";
+import Taganrog from "../../images/Taganrog.jpg";
+import Kushevskaya from "../../images/Kushevskaya.jpg";
+
+
 const initialCards = [
   {
-    image: "./images/Saint-Petersburg.jpg",
+    image: SaintPetersburg,
     title: "Санкт-Петербург",
   },
   {
-    image: "./images/Rostov-on-Don.jpg",
+    image: RostovOnDon,
     title: "Ростов-на-Дону",
   },
   {
-    image: "./images/Elbrus.jpg",
+    image: Elbrus,
     title: "Гора Эльбрус",
   },
   {
-    image: "./images/Pervomayskiy.jpg",
+    image: Pervomayskiy,
     title: "п. Первомайский",
   },
   {
-    image: "./images/Taganrog.jpg",
+    image: Taganrog,
     title: "Таганрог",
   },
   {
-    image: "./images/Kushevskaya.jpg",
+    image: Kushevskaya,
     title: "ст. Кущевская",
   },
 ];

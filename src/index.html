@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <link rel="stylesheet" href="../../scripts/pages/index.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +8,12 @@
   </head>
   <body class="page">
     <header class="header">
-      <img class="header__logo" src="./images/logo.svg" alt="картинка Место">
+      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="картинка Место">
     </header>
     <main>
       <section class="profile">
         <div class="profile__card">
-          <img class="profile__avatar" src="./images/image.jpg" alt="Картинка аватарка">
+          <img class="profile__avatar" src="<%=require('./images/image.jpg')%>" alt="Картинка аватарка">
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button type="button" aria-label="Редактировать" class="profile__edit-button"></button>
@@ -75,8 +74,5 @@
         </figure>
       </div>
     </div>
-    <!-- <script src="scripts/constants.js"></script> -->
-    <script type="module" src="scripts/pages/index.js"></script>
-    <!-- <script src="scripts/validate.js"></script> -->
   </body>
 </html>

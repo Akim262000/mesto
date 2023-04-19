@@ -1,3 +1,5 @@
+import './index.css';
+
 import {initialCards, profileEditButton, profileForm,
   nameInput, jobInput, popupNewElement, openAddButton, config} from '../utils/constants.js';
 import Card from '../components/Card.js';
