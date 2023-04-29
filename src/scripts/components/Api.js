@@ -58,7 +58,7 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
-        description: data.description
+        about: data.description
       })
     })
     .then(res => this._parseResponse(res));    

@@ -21,48 +21,17 @@ const api = new Api({
 });
 
 let userId;
+
 //Загрузка готовых карточек с сервера
 Promise.all([api.getInitialCards(), api.getUserInfo()])
   .then(([initialCards, userData]) => {
-    cardsList.renderItems(initialCards);
     profileInfo.setUserInfo(userData);
     userId = userData._id;
+    cardsList.renderItems(initialCards);
   })
   .catch((err) => {
     console.log(`Ошибка: ${err}`);
   });
-
-//Загрузка данных о пользователе с сервера
-// Promise.all([api.getUserInfo()])
-// .then(([userData]) => {
-//   profileInfo.setUserInfo(userData);
-//   userId = userData._id;
-// })
-// .catch((err) => {
-//   console.log(`Ошибка: ${err}`);
-// });
-
-
-
-
-
-// Заносим данные в форму попапа редактирования профиля
-function fillInEditProfileFormInputs({name, description}) {
-  nameInput.value = name;
-  jobInput.value = description;
-};
-
-// Создание новой карточки
-const createCard = (data) => {
-  const card = new Card({
-    data: data,
-    handleOpenImagePopup: (title, image) => {
-      viewImagePopup.open(title, image);
-    }
-  }, '.element-template');
-  const cardElement = card.generateCard();
-  return cardElement;
-};
 
 // создание экземпляра класса, отвечающего за отображение информации о пользователе
 const profileInfo = new UserInfo({
@@ -71,6 +40,11 @@ const profileInfo = new UserInfo({
   avatar: '.profile__avatar'
 });
 
+// Заносим данные в форму попапа редактирования профиля
+function fillInEditProfileFormInputs({name, description}) {
+  nameInput.value = name;
+  jobInput.value = description;
+};
 
 const editAvatarPopup = new PopupWithForm({
   popupSelector: '.popup_type_avatar',
@@ -96,21 +70,6 @@ avatarEditButton.addEventListener('click', () => {
   editAvatarPopup.open();
 });
 
-
-
-// Создание попапа редактирования профиля
-const editProfilePopup = new PopupWithForm({
-  popupSelector: '.popup_type_profile',
-  handleFormSubmit: (dataForm) => {
-    profileInfo.setUserInfo({
-      name: dataForm.name,
-      description: dataForm.description
-    });
-    editProfilePopup.close();
-  }
-});
-editProfilePopup.setEventListeners();
-
 profileEditButton.addEventListener('click', () => {
   const info = profileInfo.getUserInfo();
   fillInEditProfileFormInputs({
@@ -119,12 +78,73 @@ profileEditButton.addEventListener('click', () => {
   });
   editProfilePopup.open();
 });
+
+
+
+// Создание новой карточки
+const createCard = (data) => {
+  const card = new Card({
+    data: data,
+    cardSelector: '.element-template',
+    userId: userId,
+    handleOpenImagePopup: (title, image) => {
+      viewImagePopup.open(title, image);
+    },
+  });
+  const cardElement = card.generateCard();
+  return cardElement;
+};
+
+// Создание карточек из массива
+const cardsList = new Section({
+  renderer: (card) => {
+    cardsList.addItem(createCard(card));
+  },
+}, '.elements');
+
+
+
+
+
+
+// Создание попапа редактирования профиля
+const editProfilePopup = new PopupWithForm({
+  popupSelector: '.popup_type_profile',
+  handleFormSubmit: (dataForm) => {
+    editProfilePopup.loading(true);
+    api.editUserInfo(dataForm)
+    .then((dataForm) => {
+      profileInfo.setUserInfo(dataForm);
+      editProfilePopup.close();
+    })
+    .catch((err) => {
+      console.log(`Ошибка ${err}`);
+    })
+    .finally(() => {
+      editProfilePopup.loading(false);
+    });
+  }
+});
+editProfilePopup.setEventListeners();
+
+
+
 // Создание попапа добавления новой карточки
 const addCardPopup = new PopupWithForm({
   popupSelector: ".popup_type_element",
   handleFormSubmit: (formData) => {
-    cardsList.addItem(createCard(formData));
-    addCardPopup.close();
+    addCardPopup.loading(true);
+    api.addCard(formData)
+    .then((formData) => {
+      cardsList.addItem(createCard(formData));
+      addCardPopup.close();
+    })
+    .catch((err) => {
+      console.log(`Ошибка ${err}`);
+    })
+    .finally(() => {
+      addCardPopup.loading(false);
+    });
   }
 });
 // добавляем слушатели этому попапу:
@@ -134,12 +154,6 @@ openAddButton.addEventListener('click', () => {
   cardFormValidator.toggleButtonState();
   addCardPopup.open();
 })
-// Создание карточек из массива
-const cardsList = new Section({
-  renderer: (card) => {
-    cardsList.addItem(createCard(card));
-  },
-}, '.elements');
 
 const viewImagePopup = new PopupWithImage('.popup_type_image');
 viewImagePopup.setEventListeners();

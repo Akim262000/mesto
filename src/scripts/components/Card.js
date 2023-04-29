@@ -1,19 +1,22 @@
 export default class Card {
-  constructor({data, handleOpenImagePopup}, cardSelector) {
+  constructor({data, cardSelector, handleOpenImagePopup}) {
     this._title = data.title;
     this._image = data.image;
     this._cardSelector = cardSelector;
     this._handleOpenImagePopup = handleOpenImagePopup;
+    this._userId = userId;
+    this._cardId = data._id;
+    this._cardOwnerId = data.owner._id;
   }
 
   _getTemplate() {
-    const cardElement = document
+    this._card = document
       .querySelector(this._cardSelector)
       .content
       .querySelector(".element")
       .cloneNode(true);
 
-    return cardElement;
+    return this._card;
   }
 
   // Метод слушателя кнопки Like
