@@ -10,10 +10,10 @@ export default class PopupWithImage extends Popup {
   }
 
   // Метод слушателя открытия попапа просмотра изображения
-  open(title, image) {
-    this._popupImage.src = image;
-    this._popupImage.alt = title;
-    this._popupTitle.textContent = title;
+  open(name, link) {
+    this._popupImage.src = link;
+    this._popupImage.alt = name;
+    this._popupTitle.textContent = name;
     super.open();
   }
 }

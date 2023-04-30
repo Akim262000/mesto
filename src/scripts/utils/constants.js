@@ -9,27 +9,27 @@
 // const initialCards = [
 //   {
 //     image: SaintPetersburg,
-//     title: "Санкт-Петербург",
+//     name: "Санкт-Петербург",
 //   },
 //   {
 //     image: RostovOnDon,
-//     title: "Ростов-на-Дону",
+//     name: "Ростов-на-Дону",
 //   },
 //   {
 //     image: Elbrus,
-//     title: "Гора Эльбрус",
+//     name: "Гора Эльбрус",
 //   },
 //   {
 //     image: Pervomayskiy,
-//     title: "п. Первомайский",
+//     name: "п. Первомайский",
 //   },
 //   {
 //     image: Taganrog,
-//     title: "Таганрог",
+//     name: "Таганрог",
 //   },
 //   {
 //     image: Kushevskaya,
-//     title: "ст. Кущевская",
+//     name: "ст. Кущевская",
 //   },
 // ];
 

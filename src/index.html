@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesto</title>
+    <name>Mesto</name>
   </head>
   <body class="page">
     <header class="header">
@@ -16,9 +16,9 @@
           <img class="profile__avatar" src="<%=require('./images/image.jpg')%>" alt="Картинка аватарка">
           <button class="profile__avatar-button"></button>
           <div class="profile__info">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name"></h1>
             <button type="button" aria-label="Редактировать" class="profile__edit-button"></button>
-            <p class="profile__description">Исследователь океана</p>
+            <p class="profile__description"></p>
           </div>
         </div>
         <button type="button" aria-label="Добавить" class="profile__add-button"></button>
@@ -74,9 +74,9 @@
         <button type="button" aria-label="Закрыть" class="popup__close"></button>
         <h3 class="popup__title">Новое место</h3>
         <form class="popup__form" name="form" novalidate>
-            <input class="popup__input popup__input_type_title" type="text" id="title" name="title" minlength="2" maxlength="30" placeholder="Название" required>
+            <input class="popup__input popup__input_type_title" type="text" id="name" name="name" minlength="2" maxlength="30" placeholder="Название" required>
             <span class="popup__input-error popup__input-error_type_title"></span>
-            <input class="popup__input popup__input_type_image" type="url" id="image" name="image" placeholder="Ссылка на картинку" required>
+            <input class="popup__input popup__input_type_image" type="url" id="link" name="link" placeholder="Ссылка на картинку" required>
             <span class="popup__input-error popup__input-error_type_image"></span>
             <button type="submit" name="button" class="popup__submit-button">Создать</button>
         </form>

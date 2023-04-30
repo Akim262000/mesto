@@ -1,8 +1,20 @@
 import Popup from "./Popup";
 
 export default class PopupWithConformation extends Popup {
-  constructor() {
+  constructor({popupSelector}) {
     super(popupSelector);
     this._form = this._popup.querySelector('.popup__form');
+  }
+
+  submitCallback(removing) {
+    this._handleSubmit = removing;
+  }
+
+  setEventListeners() {
+    super.setEventListeners();
+    this._form.addEventListener('click', (evt) => {
+      evt.preventDefault();
+      this._handleSubmit();
+    });
   }
 }

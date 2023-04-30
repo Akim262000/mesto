@@ -46,6 +46,7 @@ function fillInEditProfileFormInputs({name, description}) {
   jobInput.value = description;
 };
 
+// Попап редактирования аватара
 const editAvatarPopup = new PopupWithForm({
   popupSelector: '.popup_type_avatar',
   handleFormSubmit: (data) => {
@@ -70,6 +71,7 @@ avatarEditButton.addEventListener('click', () => {
   editAvatarPopup.open();
 });
 
+
 profileEditButton.addEventListener('click', () => {
   const info = profileInfo.getUserInfo();
   fillInEditProfileFormInputs({
@@ -87,9 +89,40 @@ const createCard = (data) => {
     data: data,
     cardSelector: '.element-template',
     userId: userId,
-    handleOpenImagePopup: (title, image) => {
-      viewImagePopup.open(title, image);
+    handleOpenImagePopup: (name, link) => {
+      viewImagePopup.open(name, link);
     },
+    handleDeleteCard: (cardId) => {
+      deleteCardPopup.open();
+      deleteCardPopup.submitCallback(() => {
+        api.deleteCard(cardId)
+          .then(() => {
+            deleteCardPopup.close();
+            card.deleteCard();
+          })
+          .catch((err) => {
+            console.log(`Ошибка ${err}`);
+          });
+      });
+    },
+    handleSetLike: (cardId) => {
+      api.setLike(cardId)
+        .then((data) => {
+          card.handleLikeCard(data);
+        })
+        .catch((err) => {
+          console.log(`Ошибка ${err}`);
+        });
+    },
+    handleRemoveLike: (cardId) => {
+      api.deleteLike(cardId)
+        .then((data) => {
+          card.handleLikeCard(data);
+        })
+        .catch((err) => {
+          console.log(`Ошибка ${err}`);
+        });
+    }
   });
   const cardElement = card.generateCard();
   return cardElement;
@@ -103,9 +136,11 @@ const cardsList = new Section({
 }, '.elements');
 
 
-
-
-
+// Попам подтверждения удаления карточки
+const deleteCardPopup = new PopupWithConformation({
+  popupSelector: '.popup_type_delete'
+});
+deleteCardPopup.setEventListeners();
 
 // Создание попапа редактирования профиля
 const editProfilePopup = new PopupWithForm({
