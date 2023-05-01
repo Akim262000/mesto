@@ -23,6 +23,7 @@
         </div>
         <button type="button" aria-label="Добавить" class="profile__add-button"></button>
       </section>
+      
       <section class="elements">
         <template class="element-template">
           <div class="element">
@@ -74,9 +75,9 @@
         <button type="button" aria-label="Закрыть" class="popup__close"></button>
         <h3 class="popup__title">Новое место</h3>
         <form class="popup__form" name="form" novalidate>
-            <input class="popup__input popup__input_type_title" type="text" id="name" name="name" minlength="2" maxlength="30" placeholder="Название" required>
+            <input class="popup__input popup__input_type_title" type="text" id="title" name="title" minlength="2" maxlength="30" placeholder="Название" required>
             <span class="popup__input-error popup__input-error_type_title"></span>
-            <input class="popup__input popup__input_type_image" type="url" id="link" name="link" placeholder="Ссылка на картинку" required>
+            <input class="popup__input popup__input_type_image" type="url" id="image" name="image" placeholder="Ссылка на картинку" required>
             <span class="popup__input-error popup__input-error_type_image"></span>
             <button type="submit" name="button" class="popup__submit-button">Создать</button>
         </form>
