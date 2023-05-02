@@ -23,11 +23,6 @@ export default class Card {
     return this._card;
   }
 
-  // // Метод слушателя кнопки Like
-  // _handleLikeCard() {
-  //   this._elementLikeButton.classList.toggle('element__button-like_active');
-  // }
-
   // Метод слушателя кнопки Delete
   deleteCard() {
     this._element.remove();
@@ -72,6 +67,7 @@ export default class Card {
     return this._element;
   }
 
+// Проверка лайка
   _isCardLiked() {
     if(this._likes.some((user) => {
       return this._userId === user._id;
@@ -80,12 +76,14 @@ export default class Card {
     }
   }
 
+// Изменение количества лайков
   handleLikeCard(data) {
     this._likes = data.likes;
     this._likesNumber.textContent = this._likes.length;
     this._elementLikeButton.classList.toggle('element__button-like_active');
   }
 
+// Проверка создателя карточки
   _hasDeleteButton() {
     if(this._userId !== this._cardOwnerId) {
       this._deleteButton.remove();
