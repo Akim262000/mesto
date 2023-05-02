@@ -49,7 +49,7 @@ export default class Card {
     if(this._elementLikeButton.classList.contains('element__button-like_active')) {
       this._handleRemoveLike(this._cardId);
     } else {
-      this.handleSetLike(this._cardId);
+      this._handleSetLike(this._cardId);
     }
 
   })
